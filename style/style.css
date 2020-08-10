@@ -1,0 +1,174 @@
+/*body*/
+body{
+    background: radial-gradient(#006666, #003333);
+    font-family: fantasy;
+}
+/*CABECERA*/
+#cabecera{
+    margin: 0px;
+}
+#encabezado{
+    text-align: center;
+    font-family: fantasy;
+    color: #0f0f0f;
+    text-transform: uppercase;
+}
+#encabezado a{
+    font-size:120px;
+    text-shadow: 0px 3px 2px #323131; 
+    font-weight: bold;
+    letter-spacing: 10px;
+    margin: 0px 0px 5px 0px;  
+    color:#0f0f0f;
+    list-style: none;
+}
+#encabezado a:link{
+    text-decoration: none;
+}
+#encabezado a:hover{
+    text-shadow: 0px -6px 2px #323131; ; 
+    color: #630808;
+}
+
+#encabezado h1{
+    font-size:120px;
+    text-shadow: 0px 2px 2px #333; 
+    letter-spacing: 10px;
+    margin: 0px 0px 5px 0px;    
+}
+#encabezado h2{
+    font-size: 60px;
+    margin: 0px auto;
+    
+      
+}
+#clear{
+    clear: both;
+}
+/*Menu*/
+#menu{
+    border: 0px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    height: 62px;
+    margin: 10px 60px 20px 60px;
+    overflow: hide;
+    background: linear-gradient(rgba(255,255,255,0.01) ,rgba(182,182,182,0.3));
+}
+#menu ul{
+    margin: 5px;
+}
+#menu li{
+    list-style: none;
+    float: left;
+    padding-left: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-right: 3px solid rgba(255,255,255,0.1);
+    height: 52px;
+}
+#menu a{
+    text-decoration: none;  
+    margin: 0px;
+    padding-right: 35px; 
+    font-size: 50px;
+    color: maroon;
+    text-shadow:0px 6px 6px #4e4e4e;
+}
+#menu a:hover{
+    color: #2f2e2e;
+    text-shadow:0px -3px 6px #2f2e2e;
+    
+}
+
+/*CONTENIDO*/
+#contenido{
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 10px; 
+    background:rgba(255,255,255,0.1);
+    margin: 0px 100px 0px 100px;;
+}
+#contenido h3{
+    margin: 10px 0px 5px 60px;
+    font-size: 50px;
+    color: azure;
+}
+#contenido p{
+    margin: 0px 120px 5px 120px;
+    font-size: 40px;
+}
+
+/*Pie de pagina*/
+footer{
+    margin: 20px auto;
+    width: 35%;
+    font-size: 40px;
+    border: 2px solid rgba(255,255,255,0.01);
+    border-bottom: none;
+    border-radius: 10px;
+    background: linear-gradient(rgba(255,255,255,0.1) ,rgba(100,100,100,0.01));
+    text-align: center;
+    width: 80%;
+}
+/*-------------------------MIMAPBICI----------------*/
+/*obtener datos*/
+#obtener_datos{
+    width: 26%;
+    position: absolute;
+    margin: 0px 2px 2px 60px;
+    border:2px solid rgba(255,255,255,0.1);
+    border-radius: 10px; 
+    background:rgba(255,255,255,0.1);
+    float:left;
+}
+#obtener_datos h4{
+    text-align: center;
+    margin: 0px;
+    font-size: 35px;
+    color: azure;
+}
+#obtener_datos span{
+    font-size: 35px;
+    margin: 2px;
+    color: azure;
+}
+#obtener_datos input{
+    height: 45px;
+    width: 70%;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 35px; /*ajusta texto de dentro*/
+}
+#obtener_datos .boton{
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #006666; 
+    background: #4e4e4e;
+    color: azure;
+    width: 500px;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+/*mostrar datos*/
+#mostrar_datos{
+    width: 26%;
+    top: 500px;
+    margin:0px 2px 2px 60px;
+    position: absolute;
+    border:2px solid rgba(255,255,255,0.1);
+    border-radius: 10px; 
+    background:rgba(255,255,255,0.1);
+    font-size: 40px;
+}
+
+/*mapa*/
+#mapa{
+    width: 67.9%;
+    height: 500px;
+    margin: 0px 60px 0px 0px;
+    border:2px solid rgba(255,255,255,0.1);
+    border-radius: 10px; 
+    background:rgba(255,255,255,0.1);
+    float: right;
+}
+
+
