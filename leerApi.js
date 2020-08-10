@@ -15,16 +15,16 @@ $(document).ready(function(){
 
                 var datos = response.feeds[index];
 
-                var id = datos['entry_id'];
+                var id_pos = datos['entry_id'];
                 var latitud = datos['field1'];
                 var longitud = datos['field2'];
-
+                
+                document.cookie = 'id_pos='+id_pos;
                 document.cookie = 'lat='+latitud;
                 document.cookie = 'log='+longitud;
                 document.cookie = 'api_key='+'12345';
-                
 
-                console.log('id:',id);
+                console.log('id:',id_pos);
                 console.log('log:',latitud);
                 console.log('lat:',longitud);
         },
