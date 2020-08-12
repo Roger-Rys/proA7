@@ -1,0 +1,189 @@
+/*TODO*/
+*{
+    font-family: fantasy,arial;
+    margin: 0px auto;
+}
+/*body*/
+body{
+    background: radial-gradient(#006666, #003333);
+    font-family: fantasy;    
+}
+/*GLOBAL*/
+#global{
+    display: block; 
+    width: 80%;
+    height: auto;
+    margin-top: 20px; 
+    padding-bottom: 5px;
+    padding-bottom: 2px;
+    background: rgb(255,255,255,1);
+    box-shadow: 0px 0px 5px #202020; 
+}
+/*CABECERA*/
+#cabecera{
+    margin: 0px auto;
+}
+#encabezado{
+    text-align: center;
+    color: #0f0f0f;
+    text-transform: uppercase;
+}
+#encabezado a{
+    font-size:50px;
+    text-shadow: 0px 0px 2px #323131; 
+    font-weight: bold;
+    letter-spacing: 5px;
+    color:#0f0f0f;
+    list-style: none;
+    text-decoration: none;
+}
+
+#encabezado a:hover{
+    color:#0f0f0f;
+    text-shadow: 0px 3px 2px #323131;
+}
+
+#encabezado h2{
+    font-size: 25px;
+    margin: 0px auto;  
+}
+#clear{
+    float: none;
+    clear: both;}
+/*Menu*/
+#menu{
+    width: 90%;
+    height: 30px;
+    background: #2f2e2e;
+}
+#menu ul{
+   padding: 0px;    
+}
+#menu li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 0px;
+    letter-spacing: 1px;
+    text-transform: uppercase;    
+}
+#menu li:hover{
+    background: #006666;   
+}
+#menu a{
+    text-decoration: none;  
+    padding-right: 15px; 
+    padding-left: 15px;
+    font-size: 15px;
+    color: white;
+    line-height: 30px;
+}
+
+
+/*CONTENIDO*/
+#contenido{
+    width: 90%;
+    border-radius: 1px; 
+    background:rgba(46,46,46,0.8);
+    margin: 10px auto;
+    margin-bottom: 20px;
+}
+#contenido h3{
+    padding-left: 10px; 
+    font-size: 18px;
+    color: white;
+}
+#contenido h3:hover{
+    font-size: 19px;
+}
+
+#contenido p{
+    margin: 0px auto;
+    width: 92%;
+    text-align: justify;
+    font-size: 14px;
+}
+
+/*Pie de pagina*/
+footer{
+    width: 80%;
+    margin: 5px auto;
+    text-align: center;
+    font-size: 13px;
+    line-height: 30px;
+    border-bottom: none;
+    border-radius: 1px;
+    background: linear-gradient(rgba(200,200,200,0.3) ,rgba(100,100,100,0.1));
+    
+}
+/*-------------------------MIMAPBICI----------------*/
+/*obtener datos*/
+#obtener_datos{
+    float: left;
+    width: 25%;
+    margin: 10px 0 0 10px;
+    border:2px solid rgba(255,255,255,0.1);
+    background:rgba(46,46,46,0.8); 
+    color: white;
+}
+
+#obtener_datos h4{
+    text-align: center;
+    margin: 0px auto;
+    font-size: 15px;    
+}
+#obtener_datos span{
+    font-size: 15px;
+    margin: 2px;
+}
+#obtener_datos input{
+    height: auto;
+    width: 70%;
+    margin-left: 15%;
+    border-radius: 1px;
+    border: none;
+    font-size: 10px; /*ajusta texto de dentro*/
+}
+#obtener_datos .boton{
+    width: 70%;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 1px; 
+    background: #006666;
+    color: azure;   
+}
+#obtener_datos .boton:hover{
+    background: white;
+    color: #006666; 
+}
+/*mostrar datos*/
+#mostrar_datos{
+    float: left;
+    font-size: 14px;
+    width: 23.5%;
+    text-align: center;
+    margin: 10px 0 0 10px;
+    margin-left: 10px;
+    padding: 5px;
+    border:2px solid rgba(255,255,255,0.1);
+    background:rgba(46,46,46,0.8); 
+    color: white;
+    clear: none;    
+}
+#mostrar_datos p{
+    font-size: 15px;
+}
+
+/*mapa*/
+#mapa{
+    float: right;
+    width: 70%;
+    height: 500px;
+    margin: 10px 10px 10px 0px;
+    border:2px solid rgba(255,255,255,0.1);
+    background:rgba(46,46,46,0.8); 
+    color: white;
+}
+
+

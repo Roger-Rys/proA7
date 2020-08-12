@@ -18,10 +18,12 @@ if(isset($_COOKIE['id_pos']) && isset($_COOKIE['lat']) && isset($_COOKIE['log'])
         
     guardar($id_posicion,$latitud, $longitud, $api_key);    
     
-}else{
-    echo 'No existe valores en Cookie';
-    die();
 }
+else{
+   $_SESSION['error']['cookie'] = 'No existe valores en Cookie';
+    goto dirigir;    
+}
+dirigir: header('location: mimapbici.php');
 
 
 function guardar($id_posicion,$latitud, $longitud, $api_key){
@@ -51,46 +53,50 @@ function guardar($id_posicion,$latitud, $longitud, $api_key){
         $api_key_value = "12345";
     
     if($api_key === $api_key_value) {
+        if(!isset($_SESSION)){ // Si hay algo en sesion
+            session_start();            
+        }
+        
         // Create connection
         //mysqli_connect($host, $user, $password, $database, $port, $socket)
         $conn = new mysqli($servername, $username, $password, $dbname, $port);
         // Check connection
         if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);            
+            $_SESSION['error']['bd'] = "Connection failed: " . $conn->connect_error;
         }
         $sql = 'SELECT id_posicion FROM poslatlog';
-        if($conn->query($sql) == TRUE){
         
+        if($conn->query($sql) == TRUE){
             if($conn != $id_posicion || empty($conn) ){
                 $sql = "INSERT INTO poslatlog VALUES ( NULL,$id_posicion, $latitud, $longitud, CURDATE(), SYSDATE())";
 
                 if ($conn->query($sql) === TRUE) {
-                    echo "Nuevos datos guardados!!";
+                    $_SESSION['exito'] = "Nuevos datos guardados!!";
+                    $_SESSION['latitud']=$latitud;
+                    $_SESSION['longitud']=$longitud;
+                    header('location: mimapbici.php');
                 } 
                 else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    $_SESSION['error']['guardar']="Error: " . $sql . "<br>" . $conn->error;
                 }
                 $conn->close();
             }
             else{
-                echo 'id_posicion ya existe';            
+                $_SESSION['error']['id_posicion'] = 'id_posicion ya existe';            
             }
         }
         else{
-            echo 'Error de comparacion: '.$conn->error;
+           $_SESSION['error'] = 'Error de comparacion: '.$conn->error;
             $conn->close();
+            goto dirigir;
         }            
     }
     else {
-        echo "Wrong API Key provided.";
+        $_SESSION['error']['api'] = "Wrong API Key provided.";
+         goto dirigir;
     }
+    dirigir: header('location: mimapbici.php');
 
-
-    function test_input($data) {
-        $data = trim($data); //Quita espacios
-        $data = stripslashes($data);//Quita slash
-        $data = htmlspecialchars($data);//Convierte a elemento HTML
-        return $data;
-    }
   }
+  
 ?>

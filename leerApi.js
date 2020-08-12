@@ -1,13 +1,15 @@
 $(document).ready(function(){
+    var id_pos_old=0;    
     
-    $.ajax({
-        type: 'GET',
-        url: 'https://api.thingspeak.com/channels/1073852/feeds.json?results=2',
+    setInterval(function(){
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.thingspeak.com/channels/1073852/feeds.json?results=2',
 
-        beforeSend:function(){
-                console.log('Cargando');
-        },
-        success:function(response){
+            beforeSend:function(){
+                    console.log('Cargando');
+            },
+            success:function(response){
                 console.log('alimentacion: ',response.feeds);
 
                 var index = (response.feeds.length)-1;
@@ -18,20 +20,45 @@ $(document).ready(function(){
                 var id_pos = datos['entry_id'];
                 var latitud = datos['field1'];
                 var longitud = datos['field2'];
-                
-                document.cookie = 'id_pos='+id_pos;
-                document.cookie = 'lat='+latitud;
-                document.cookie = 'log='+longitud;
-                document.cookie = 'api_key='+'12345';
 
-                console.log('id:',id_pos);
-                console.log('log:',latitud);
-                console.log('lat:',longitud);
-        },
-        error:function(){
-                console.log('error');
-        }
-    });
+                if(id_pos !== id_pos_old){
+                    console.log('idOldAjx: ',id_pos_old);
+                    var result = ingresar_datos(id_pos, latitud, longitud)
+                    console.log(result);
+
+                    console.log('Completado!!!!!');
+                    document.location.href='http://localhost/master-php/proyectMap/db.php';
+                    setInterval(function(){},2000);
+                    
+                }
+                else{
+                    console.log('Ningun dato nuevo');                    
+                }
+            },
+            error:function(){
+                    console.log('error');
+            }            
+        });
+        
+    },5000);
+    
+    function ingresar_datos(id_pos, latitud, longitud){
+        id_pos_old = id_pos;
+        
+        console.log('idOldFun:',id_pos_old);
+        document.cookie = 'id_pos='+id_pos;
+        document.cookie = 'lat='+latitud;
+        document.cookie = 'log='+longitud;
+        document.cookie = 'api_key='+'12345';
+        
+        var result = 'Nuevos valores\n';
+        result+='id:'+id_pos+'\n';
+        result+='log:'+latitud+'\n';
+        result+='lat:'+longitud+'\n';
+        
+        return result;
+    }
+    
    
 });
 
