@@ -1,4 +1,5 @@
 <?php
+include_once 'model/conexionDB.php';
 
 $api_key= $latitud = $longitud = "";
 
@@ -37,17 +38,7 @@ function guardar($id_posicion,$latitud, $longitud, $api_key){
     // mysqli_connect($host, $user, $password, $database, $port, $socket);
     // $coneccion = mysqli_connect("sql306.byethost.com", "b6_26028707", "roysreyes90", "b6_26028707_bd_pbici");
 
-        $servername = "localhost";//"127.0.0.1"; //"localhost";
-        // REPLACE with your Database name
-        $dbname = "posbici";
-        // REPLACE with Database user
-        $username = "root";
-        // REPLACE with Database user password
-        $password = "";
-        //PORT
-        $port = 3308;
-
-
+        
     // Keep this API Key value to be compatible with the ESP32 code provided in the project page. 
     // If you change this value, the ESP32 sketch needs to match
         $api_key_value = "12345";
@@ -56,18 +47,18 @@ function guardar($id_posicion,$latitud, $longitud, $api_key){
         if(empty($_SESSION)){ // Si hay algo en sesion
             session_start();            
         }
+       
+        //CREO CONEXION
+        $conexion = new DB();
+        $conn= $conexion->conexionDB();
         
-        // Create connection
-        //mysqli_connect($host, $user, $password, $database, $port, $socket)
-        $conn = new mysqli($servername, $username, $password, $dbname, $port);
         // Check connection
-        
         if ($conn->connect_error) {
             $_SESSION['error_bd'] = "Connection failed: " . $conn->connect_error;
         }
         $sql = 'SELECT id_posicion FROM poslatlog ORDER BY id_posicion DESC LIMIT 1';
         
-        if($conn->query($sql) == TRUE){
+        if($conn->query($sql)== TRUE ){
             $result = $conn->query($sql);//Obtengo consulta
             $resultSql = $result->fetch_object(); //Separo objeto
             $resultSql = $resultSql->id_posicion; //Selecciono Objeto

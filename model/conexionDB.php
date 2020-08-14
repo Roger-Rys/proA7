@@ -17,4 +17,5 @@ class DB{
         
         return $db;//self::$db
     }
+
 }
