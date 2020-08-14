@@ -1,5 +1,5 @@
   <!--PIE-->   
-        </section><!-global--->
+        </section><!-global-->
         
         <div id="clear"></div>
 

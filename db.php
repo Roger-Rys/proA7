@@ -20,10 +20,10 @@ if(isset($_COOKIE['id_pos']) && isset($_COOKIE['lat']) && isset($_COOKIE['log'])
     
 }
 else{
-   $_SESSION['error']['cookie'] = 'No existe valores en Cookie';
+   $_SESSION['error_cookie'] = 'No existe valores en Cookie';
     goto dirigir;    
 }
-dirigir: header('location: mimapbici.php');
+dirigir: header('location: ubicarBici.php');
 
 
 function guardar($id_posicion,$latitud, $longitud, $api_key){
@@ -33,7 +33,7 @@ function guardar($id_posicion,$latitud, $longitud, $api_key){
         setcookie('lat','',time()-100);
         setcookie('log','',time()-100);
         setcookie('api_key','',time()-100);
-    
+        
     // mysqli_connect($host, $user, $password, $database, $port, $socket);
     // $coneccion = mysqli_connect("sql306.byethost.com", "b6_26028707", "roysreyes90", "b6_26028707_bd_pbici");
 
@@ -53,7 +53,7 @@ function guardar($id_posicion,$latitud, $longitud, $api_key){
         $api_key_value = "12345";
     
     if($api_key === $api_key_value) {
-        if(!isset($_SESSION)){ // Si hay algo en sesion
+        if(empty($_SESSION)){ // Si hay algo en sesion
             session_start();            
         }
         
@@ -61,41 +61,50 @@ function guardar($id_posicion,$latitud, $longitud, $api_key){
         //mysqli_connect($host, $user, $password, $database, $port, $socket)
         $conn = new mysqli($servername, $username, $password, $dbname, $port);
         // Check connection
+        
         if ($conn->connect_error) {
-            $_SESSION['error']['bd'] = "Connection failed: " . $conn->connect_error;
+            $_SESSION['error_bd'] = "Connection failed: " . $conn->connect_error;
         }
-        $sql = 'SELECT id_posicion FROM poslatlog';
+        $sql = 'SELECT id_posicion FROM poslatlog ORDER BY id_posicion DESC LIMIT 1';
         
         if($conn->query($sql) == TRUE){
-            if($conn != $id_posicion || empty($conn) ){
+            $result = $conn->query($sql);//Obtengo consulta
+            $resultSql = $result->fetch_object(); //Separo objeto
+            $resultSql = $resultSql->id_posicion; //Selecciono Objeto
+                        
+            //COMPROBAR SI EXISTEN DATOS
+            if( $resultSql != $id_posicion){
                 $sql = "INSERT INTO poslatlog VALUES ( NULL,$id_posicion, $latitud, $longitud, CURDATE(), SYSDATE())";
-
+                
                 if ($conn->query($sql) === TRUE) {
                     $_SESSION['exito'] = "Nuevos datos guardados!!";
-                    $_SESSION['latitud']=$latitud;
+                                                            
+                    //GUARDO LAT Y LOG EN SESION
+                    $_SESSION['latitud']=$latitud; 
                     $_SESSION['longitud']=$longitud;
-                    header('location: mimapbici.php');
+                    header('location: ubicarBici.php');
                 } 
                 else {
                     $_SESSION['error']['guardar']="Error: " . $sql . "<br>" . $conn->error;
+                    
                 }
                 $conn->close();
             }
             else{
-                $_SESSION['error']['id_posicion'] = 'id_posicion ya existe';            
+                $_SESSION['error_id_posicion'] = "id_posicion ya existe";
             }
         }
         else{
-           $_SESSION['error'] = 'Error de comparacion: '.$conn->error;
+           $_SESSION['error_consultaId'] = 'Error de comparacion: '.$conn->error;
             $conn->close();
             goto dirigir;
         }            
     }
     else {
-        $_SESSION['error']['api'] = "Wrong API Key provided.";
+        $_SESSION['error_api'] = "Wrong API Key provided.";
          goto dirigir;
     }
-    dirigir: header('location: mimapbici.php');
+    dirigir: header('location: ubicarBici.php');
 
   }
   

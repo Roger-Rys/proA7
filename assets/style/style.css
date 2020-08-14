@@ -4,15 +4,18 @@
     margin: 0px auto;
 }
 /*body*/
-body{
+html, body{
     background: radial-gradient(#006666, #003333);
-    font-family: fantasy;    
+    font-family: fantasy; 
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 /*GLOBAL*/
 #global{
     display: block; 
     width: 80%;
-    height: auto;
+    height: 115%;
     margin-top: 20px; 
     padding-bottom: 5px;
     padding-bottom: 2px;
@@ -82,6 +85,7 @@ body{
 /*CONTENIDO*/
 #contenido{
     width: 90%;
+    height: 50%;
     border-radius: 1px; 
     background:rgba(46,46,46,0.8);
     margin: 10px auto;
@@ -116,11 +120,15 @@ footer{
     
 }
 /*-------------------------MIMAPBICI----------------*/
+/*BARRALATERAL*/
+#barra_lateral{
+    float: right;
+    width: 26%;
+    padding: 5px;
+}
 /*obtener datos*/
-#obtener_datos{
-    float: left;
-    width: 25%;
-    margin: 10px 0 0 10px;
+#obtener_datos{  
+    margin: 5px auto;
     border:2px solid rgba(255,255,255,0.1);
     background:rgba(46,46,46,0.8); 
     color: white;
@@ -137,18 +145,22 @@ footer{
 }
 #obtener_datos input{
     height: auto;
-    width: 70%;
+    width: 75%;
     margin-left: 15%;
     border-radius: 1px;
     border: none;
-    font-size: 10px; /*ajusta texto de dentro*/
+    font-size: 14px; /*ajusta texto de dentro*/
 }
-#obtener_datos .boton{
+input[type=submit], 
+button{
+    display: block;
     width: 70%;
     margin-top: 6px;
     margin-bottom: 6px;
     text-align: center;
     font-size: 15px;
+    padding: 5px;
+    border: 1px solid #003333;
     border-radius: 1px; 
     background: #006666;
     color: azure;   
@@ -159,12 +171,9 @@ footer{
 }
 /*mostrar datos*/
 #mostrar_datos{
-    float: left;
     font-size: 14px;
-    width: 23.5%;
     text-align: center;
-    margin: 10px 0 0 10px;
-    margin-left: 10px;
+    margin: 5px auto;
     padding: 5px;
     border:2px solid rgba(255,255,255,0.1);
     background:rgba(46,46,46,0.8); 
@@ -175,15 +184,39 @@ footer{
     font-size: 15px;
 }
 
-/*mapa*/
-#mapa{
-    float: right;
-    width: 70%;
-    height: 500px;
-    margin: 10px 10px 10px 0px;
+/*Notificaciones*/
+#notificaciones{
+    text-align: center;
+    margin-top: 5px auto;
     border:2px solid rgba(255,255,255,0.1);
     background:rgba(46,46,46,0.8); 
     color: white;
 }
+/*Datos Actuales*/
+#datos_actuales button:hover{
+    background: white;
+    color: #006666; 
+}
+/*Detener*/
+.bt_detener{
+   ;
+}
 
+/*mapaContenido*/
+#mapaContenido{
+    float: left;
+    width: 70%;
+    height: 68%;
+    margin: 10px 0 0 10px;
+    border:2px solid rgba(255,255,255,0.1);
+    background:rgba(46,46,46,0.8);
+    color: white;
+}
+/*mapa*/
+ /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {   
+    height: 100%;
+    width: 100%;
+}
 
