@@ -2,6 +2,7 @@
 <?php
 require_once 'includes/cabeza.php';
 require_once 'controller/queryDBcontroller.php';
+include_once 'controller/mostrarMarkerController.php';
 ?>
 
 <!--MAPA-->
@@ -10,13 +11,10 @@ require_once 'controller/queryDBcontroller.php';
 
     <!--<p>Aqui va mapa</p>-->
     <?php
-    if (isset($_GET["fecha"])) {
-        $queryDB = new QueryDBcontroller();
-        $posiciones = $queryDB->posicionPorFecha($_GET["fecha"]);
-        while ($posicion = $posiciones->fetch_object()) {
-            echo '<p>Lat: ' . $posicion->latitud . ' | Lon: ' . $posicion->longitud .
-            '| fecha: ' . $posicion->fecha . ' | hora: ' . $posicion->hora . '</p>';
-        }
+    if (isset($_GET['fecha'])) {
+        $fecha = '"'.$_GET['fecha'].'"';
+       $mostrarEnMap = new MostrarMarkerController();
+       $mostrarEnMap->mostrarMarkerEnMap($fecha);
         $_GET["fecha"] = NULL;
     }
     ?> 
@@ -60,35 +58,32 @@ require_once 'controller/queryDBcontroller.php';
             }
             ?>                    
             <?php if (!empty($_SESSION['error_cookie'])): ?>
-                <p>Error1: <?= $_SESSION['error_cookie']; ?></p>
+                <p>a: <?= $_SESSION['error_cookie']; ?></p>
 
             <?php elseif (!empty($_SESSION['error_bd'])): ?>
-                <p>Error2: <?= $_SESSION['error_bd']; ?></p>
+                <p>b: <?= $_SESSION['error_bd']; ?></p>
 
             <?php elseif (!empty($_SESSION['error_guardar'])): ?>
-                <p>Error3: <?= $_SESSION['error_guardar']; ?></p>
+                <p>c: <?= $_SESSION['error_guardar']; ?></p>
 
             <?php elseif (!empty($_SESSION['error_id_posicion'])): ?>
-                <p>Error4: <?= $_SESSION['error_id_posicion']; ?></p>
+                <p>d: <?= $_SESSION['error_id_posicion']; ?></p>
 
             <?php elseif (!empty($_SESSION['error_consultaId'])): ?>
-                <p>Error5: <?= $_SESSION['error_consultaId']; ?></p>
+                <p>e: <?= $_SESSION['error_consultaId']; ?></p>
 
             <?php elseif (!empty($_SESSION['error_api'])): ?>
-                <p>Error6: <?= $_SESSION['error_api']; ?></p> 
+                <p>f: <?= $_SESSION['error_api']; ?></p> 
 
             <?php elseif (!empty($_SESSION['exito'])): ?>
-                <p>Resultado: <?= $_SESSION['exito']; ?></p>
-
-            <?php elseif (!empty($_SESSION['latitud'])): ?>
+                <p><?= $_SESSION['exito']; ?></p>
                 <p>Latitud: <?= $_SESSION['latitud']; ?></p>
-
-            <?php elseif (!empty($_SESSION['longitud'])): ?>
                 <p>Longitud: <?= $_SESSION['longitud']; ?></p>
-
+           
             <?php else: ?>            
             <?php endif;
-            unset($_SESSION); ?><!--BORRAR SESSION-->
+            unset($_SESSION);?><!--BORRAR SESSION-->
+            
 
         </div>
     </div>

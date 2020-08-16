@@ -18,11 +18,13 @@
            $queryDB = new QueryBD();
            $ultimosDatos = $queryDB->ultimosDatosPosicion();
            $ultimo = $ultimosDatos->fetch_Object();
-           return $ultimo;            
+           return $ultimo;              
        }
-
-
-       
+       function seleccionar_id_posicion(){
+            $queryDB = new QueryBD();
+            $id_posicion = $queryDB->seleccion_id_posicion();
+            return $id_posicion;
+       }       
 
 
    }

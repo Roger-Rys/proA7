@@ -21,11 +21,13 @@ class QueryBD extends DB{
     }
     
     public function datosPosicionFecha($fecha){//"2020-08-10"
-        $query = "SELECT latitud, longitud, fecha, hora FROM poslatlog WHERE fecha LIKE '$fecha'";
+        $query = "SELECT latitud, longitud, fecha, hora FROM poslatlog WHERE fecha LIKE $fecha;";
         $result = $this->db->query($query);
         return $result;
     }
-    public function posicionActual(){
-        
+    public function seleccion_id_posicion(){
+        $query = 'SELECT id_posicion FROM poslatlog ORDER BY id_posicion DESC LIMIT 1';
+        $result = $this->db->query($query);
+        return $result;
     }
 }
